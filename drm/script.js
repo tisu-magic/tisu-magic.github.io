@@ -1,29 +1,22 @@
-// script.js
-
 function sendRequest() {
-    // Tangkap nilai dari input form
     const pssh = document.getElementById('pssh').value;
     const licenseUrl = document.getElementById('licenseUrl').value;
-    const userAgent = document.getElementById('userAgent').value;
-    const jsonData = document.getElementById('jsonData').value;
-    const cookies = document.getElementById('cookies').value;
-    const requestData = document.getElementById('requestData').value;
     const proxy = document.getElementById('proxy').value;
+    const headers = JSON.parse(document.getElementById('headers').value);
+    const json = document.getElementById('json').value;
+    const cookies = document.getElementById('cookies').value;
+    const data = document.getElementById('data').value;
 
-    // Buat objek data untuk dikirim ke API
     const jsonRequestData = {
         'PSSH': pssh,
         'License URL': licenseUrl,
-        'Headers': {
-            'User-Agent': userAgent
-        },
-        'JSON': jsonData,
+        'Headers': headers,
+        'JSON': json,
         "Cookies": cookies,
-        'Data': requestData,
+        'Data': data,
         'Proxy': proxy
     };
 
-    // Kirim permintaan ke API menggunakan fetch
     fetch('https://cdrm-project.com/', {
         method: 'POST',
         headers: {
@@ -38,11 +31,9 @@ function sendRequest() {
         return response.json();
     })
     .then(data => {
-        // Tampilkan respons dari API
         document.getElementById('response').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
     })
     .catch(error => {
-        // Tangani kesalahan jika terjadi
         document.getElementById('response').textContent = 'Error: ' + error;
     });
 }
