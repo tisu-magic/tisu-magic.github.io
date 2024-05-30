@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CDRM API Request Form</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -12,40 +12,33 @@
         <form id="apiForm">
             <div class="form-group">
                 <label for="pssh">PSSH:</label>
-                <input type="text" id="pssh" name="pssh" placeholder="Enter PSSH value" required>
+                <textarea id="pssh" onclick="this.placeholder =''" rows="1" cols="1" placeholder="AAAAW3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADsIARIQ62dqu8s0Xpa7z2FmMPGj2hoNd2lkZXZpbmVfdGVzdCIQZmtqM2xqYVNkZmFsa3IzaioCSEQyAA=="></textarea>
             </div>
-
             <div class="form-group">
                 <label for="licenseUrl">License URL:</label>
-                <input type="text" id="licenseUrl" name="licenseUrl" placeholder="Enter License URL" required>
+                <textarea id="licenseUrl" onclick="this.placeholder =''" rows="1" cols="1" placeholder="https://cwip-shaka-proxy.appspot.com/no_auth"></textarea>
             </div>
-
-            <div class="form-group">
-                <label for="userAgent">User-Agent:</label>
-                <input type="text" id="userAgent" name="userAgent" placeholder="Enter User-Agent" required>
-            </div>
-
-            <div class="form-group">
-                <label for="jsonData">JSON Data:</label>
-                <textarea id="jsonData" name="jsonData" placeholder="Enter JSON data"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="cookies">Cookies:</label>
-                <textarea id="cookies" name="cookies" placeholder="Enter Cookies"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="requestData">Request Data:</label>
-                <textarea id="requestData" name="requestData" placeholder="Enter Request Data"></textarea>
-            </div>
-
             <div class="form-group">
                 <label for="proxy">Proxy:</label>
-                <input type="text" id="proxy" name="proxy" placeholder="Enter Proxy URL">
+                <textarea id="proxy" rows="1" cols="1"></textarea>
             </div>
-
-            <button type="button" onclick="sendRequest()">Send Request</button>
+            <div class="form-group">
+                <label for="headers">Headers:</label>
+                <textarea id="headers" onclick="this.placeholder =''" rows="5" cols="1" placeholder="{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0'}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="json">JSON:</label>
+                <textarea id="json" rows="5" cols="1"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="cookies">Cookies:</label>
+                <textarea id="cookies" rows="5" cols="1"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="data">Data:</label>
+                <textarea id="data" rows="2" cols="1"></textarea>
+            </div>
+            <button onclick="sendRequest()" id="decrypt_button" type="button">Send Request</button>
         </form>
         <div id="response"></div>
     </div>
