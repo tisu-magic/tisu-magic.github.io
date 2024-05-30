@@ -3,13 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDRM API Request</title>
+    <title>CDRM API Request Form</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>CDRM API Request Form</h1>
     <form id="apiForm">
-        <!-- Form input fields here -->
+        <label for="pssh">PSSH:</label>
+        <input type="text" id="pssh" name="pssh" placeholder="Enter PSSH value" required><br>
+
+        <label for="licenseUrl">License URL:</label>
+        <input type="text" id="licenseUrl" name="licenseUrl" placeholder="Enter License URL" required><br>
+
+        <label for="userAgent">User-Agent:</label>
+        <input type="text" id="userAgent" name="userAgent" placeholder="Enter User-Agent" required><br>
+
+        <label for="jsonData">JSON Data:</label>
+        <textarea id="jsonData" name="jsonData" placeholder="Enter JSON data"></textarea><br>
+
+        <label for="cookies">Cookies:</label>
+        <textarea id="cookies" name="cookies" placeholder="Enter Cookies"></textarea><br>
+
+        <label for="requestData">Request Data:</label>
+        <textarea id="requestData" name="requestData" placeholder="Enter Request Data"></textarea><br>
+
+        <label for="proxy">Proxy:</label>
+        <input type="text" id="proxy" name="proxy" placeholder="Enter Proxy URL"><br>
+
         <button type="button" onclick="sendRequest()">Send Request</button>
     </form>
     <div id="response"></div>
