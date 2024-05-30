@@ -1,18 +1,18 @@
-function sendRequest() {
-    const pssh = document.getElementById('pssh').value;
-    const licenseUrl = document.getElementById('licenseUrl').value;
-    const proxy = document.getElementById('proxy').value;
-    const headers = JSON.parse(document.getElementById('headers').value);
-    const json = document.getElementById('json').value;
-    const cookies = document.getElementById('cookies').value;
-    const data = document.getElementById('data').value;
+function sendDecryption() {
+    var pssh = document.getElementById("index_pssh").value;
+    var licenseUrl = document.getElementById("license_url").value;
+    var proxy = document.getElementById("proxy").value;
+    var headers = JSON.parse(document.getElementById("headers").value);
+    var jsonData = document.getElementById("json").value;
+    var cookies = document.getElementById("cookies").value;
+    var data = document.getElementById("data").value;
 
-    const jsonRequestData = {
+    var requestData = {
         'PSSH': pssh,
         'License URL': licenseUrl,
         'Headers': headers,
-        'JSON': json,
-        "Cookies": cookies,
+        'JSON': jsonData,
+        'Cookies': cookies,
         'Data': data,
         'Proxy': proxy
     };
@@ -22,18 +22,14 @@ function sendRequest() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(jsonRequestData)
+        body: JSON.stringify(requestData)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        document.getElementById('response').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        document.getElementById("decrypt_results").textContent = JSON.stringify(data);
     })
     .catch(error => {
-        document.getElementById('response').textContent = 'Error: ' + error;
+        console.error('Error:', error);
+        document.getElementById("decrypt_results").textContent = 'Error: ' + error.message;
     });
 }
