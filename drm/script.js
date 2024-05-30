@@ -1,21 +1,26 @@
 // script.js
+
 function sendRequest() {
     // Tangkap nilai dari input form
     const pssh = document.getElementById('pssh').value;
     const licenseUrl = document.getElementById('licenseUrl').value;
     const userAgent = document.getElementById('userAgent').value;
+    const jsonData = document.getElementById('jsonData').value;
+    const cookies = document.getElementById('cookies').value;
+    const requestData = document.getElementById('requestData').value;
+    const proxy = document.getElementById('proxy').value;
 
     // Buat objek data untuk dikirim ke API
-    const jsonData = {
+    const jsonRequestData = {
         'PSSH': pssh,
         'License URL': licenseUrl,
         'Headers': {
             'User-Agent': userAgent
         },
-        'JSON': "{}",
-        'Cookies': "{}",
-        'Data': "{}",
-        'Proxy': ""
+        'JSON': jsonData,
+        "Cookies": cookies,
+        'Data': requestData,
+        'Proxy': proxy
     };
 
     // Kirim permintaan ke API menggunakan fetch
@@ -24,7 +29,7 @@ function sendRequest() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(jsonData)
+        body: JSON.stringify(jsonRequestData)
     })
     .then(response => {
         if (!response.ok) {
