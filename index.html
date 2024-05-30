@@ -1,17 +1,59 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<script language="javascript">window.location="https://cdn-icons-png.flaticon.com/512/5553/5553912.png";</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDRM API Request</title>
 </head>
+<body>
+    <h1>CDRM API Request Form</h1>
+    <form id="apiForm">
+        <label for="pssh">PSSH:</label><br>
+        <input type="text" id="pssh" name="pssh" value="AAAAXHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADwSEAdnt8iWzoyUAT/Sr8L4/NASEAdnt8iWzoyUAT/Sr8L4/NASEAdnt8iWzoyUAT/Sr8L4/NBI49yVmwY="><br><br>
+
+        <label for="licenseUrl">License URL:</label><br>
+        <input type="text" id="licenseUrl" name="licenseUrl" value="https://dusk.biz.id/vd/play.php?id=206&type=drm"><br><br>
+
+        <label for="userAgent">User-Agent:</label><br>
+        <input type="text" id="userAgent" name="userAgent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"><br><br>
+
+        <button type="button" onclick="sendRequest()">Send Request</button>
+    </form>
+    <pre id="response"></pre>
+
+    <script>
+        function sendRequest() {
+            const pssh = document.getElementById('pssh').value;
+            const licenseUrl = document.getElementById('licenseUrl').value;
+            const userAgent = document.getElementById('userAgent').value;
+
+            const jsonData = {
+                'PSSH': pssh,
+                'License URL': licenseUrl,
+                'Headers': {
+                    'User-Agent': userAgent
+                },
+                'JSON': "{}",
+                "Cookies": "{}",
+                'Data': "{}",
+                'Proxy': ""
+            };
+
+            fetch('https://cdrm-project.com/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('response').textContent = 'Error: ' + error;
+            });
+        }
+    </script>
+</body>
 </html>
-
-
-
-#EXTM3U refresh="3600" vod_library="https://pl.kokokputik.my.id/expired/ex.json"
-#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/5553/5553912.png" group-title=".INFO",EXPIRED
-https://pl.kokokputik.my.id/expired/index.m3u8?id=expired&token=xxxx
-
-
