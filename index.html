@@ -4,22 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CDRM API Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #response {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
     <h1>CDRM API Request Form</h1>
     <form id="apiForm">
-        <label for="pssh">PSSH:</label><br>
-        <input type="text" id="pssh" name="pssh" value="AAAAXHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADwSEAdnt8iWzoyUAT/Sr8L4/NASEAdnt8iWzoyUAT/Sr8L4/NASEAdnt8iWzoyUAT/Sr8L4/NBI49yVmwY="><br><br>
+        <label for="pssh">PSSH:</label>
+        <input type="text" id="pssh" name="pssh">
 
-        <label for="licenseUrl">License URL:</label><br>
-        <input type="text" id="licenseUrl" name="licenseUrl" value="https://dusk.biz.id/vd/play.php?id=206&type=drm"><br><br>
+        <label for="licenseUrl">License URL:</label>
+        <input type="text" id="licenseUrl" name="licenseUrl">
 
-        <label for="userAgent">User-Agent:</label><br>
-        <input type="text" id="userAgent" name="userAgent" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"><br><br>
+        <label for="userAgent">User-Agent:</label>
+        <input type="text" id="userAgent" name="userAgent">
 
         <button type="button" onclick="sendRequest()">Send Request</button>
     </form>
-    <pre id="response"></pre>
+    <div id="response"></div>
 
     <script>
         function sendRequest() {
@@ -48,7 +86,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+                document.getElementById('response').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
             })
             .catch(error => {
                 document.getElementById('response').textContent = 'Error: ' + error;
