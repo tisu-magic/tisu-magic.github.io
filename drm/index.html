@@ -1,47 +1,70 @@
+<!-- Extend the base HTML template -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDRM API Request Form</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>CDRM-Project 2.0</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script src="/js/functions.js"></script>
+    <script src="/js/index.js"></script>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
 </head>
+
 <body>
-    <div class="container">
-        <h1>CDRM API Request Form</h1>
-        <form id="apiForm">
-            <div class="form-group">
-                <label for="pssh">PSSH:</label>
-                <textarea id="pssh" onclick="this.placeholder =''" rows="1" cols="1" placeholder="AAAAW3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADsIARIQ62dqu8s0Xpa7z2FmMPGj2hoNd2lkZXZpbmVfdGVzdCIQZmtqM2xqYVNkZmFsa3IzaioCSEQyAA=="></textarea>
-            </div>
-            <div class="form-group">
-                <label for="licenseUrl">License URL:</label>
-                <textarea id="licenseUrl" onclick="this.placeholder =''" rows="1" cols="1" placeholder="https://cwip-shaka-proxy.appspot.com/no_auth"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="proxy">Proxy:</label>
-                <textarea id="proxy" rows="1" cols="1"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="headers">Headers:</label>
-                <textarea id="headers" onclick="this.placeholder =''" rows="5" cols="1" placeholder="{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0'}"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="json">JSON:</label>
-                <textarea id="json" rows="5" cols="1"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="cookies">Cookies:</label>
-                <textarea id="cookies" rows="5" cols="1"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="data">Data:</label>
-                <textarea id="data" rows="2" cols="1"></textarea>
-            </div>
-            <button onclick="sendRequest()" id="decrypt_button" type="button">Send Request</button>
-        </form>
-        <div id="response"></div>
-    </div>
-    <script src="script.js"></script>
+    <header>
+        CDRM-Project 2.0
+    </header>
+
+    <nav>
+        <a id="main_href" class="navi" href="/">Home</a>
+        <a id="cache_href" class="navi" href="/cache">Cache</a>
+        <a id="api" class="navi" href="/api">API</a>
+        <a id="extension" class="navi" href="/extension">Extension</a>
+        <a id="devine" class="navi" href="/devine">Devine</a>
+        <a id="faq_href" class="navi" href="/faq">FAQ</a>
+        <a id="login_href" class="navi" href="/login">Login</a>
+    </nav>
+
+    <main>
+        <h1>Send Widevine license request</h1>
+        <div id="decrypt_form">
+            <label for="index_pssh">PSSH:</label>
+            <textarea id="index_pssh" onclick="this.placeholder =''" rows="1" cols="1" placeholder="AAAAW3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADsIARIQ62dqu8s0Xpa7z2FmMPGj2hoNd2lkZXZpbmVfdGVzdCIQZmtqM2xqYVNkZmFsa3IzaioCSEQyAA=="></textarea>
+
+            <label for="license_url">License URL:</label>
+            <textarea id="license_url" onclick="this.placeholder =''" rows="1" cols="1" placeholder="https://cwip-shaka-proxy.appspot.com/no_auth"></textarea>
+
+            <label for="proxy">Proxy:</label>
+            <textarea id="proxy" rows="1" cols="1"></textarea>
+
+            <label for="headers">Headers:</label>
+            <textarea id="headers" onclick="this.placeholder =''" rows="5" cols="1" placeholder="{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0'}"></textarea>
+
+            <label for="json">JSON:</label>
+            <textarea id="json" rows="5" cols="1"></textarea>
+
+            <label for="cookies">Cookies:</label>
+            <textarea id="cookies" rows="5" cols="1"></textarea>
+
+            <label for="data">Data:</label>
+            <textarea id="data" rows="2" cols="1"></textarea>
+
+            <button onclick="sendDecryption()" id="decrypt_button" type="button"><span class="lock-icon"></span>Decrypt!</button>
+        </div>
+
+        <div id="results">
+            <p id="keys_paragraph">RESULTS</p>
+            <p id="decrypt_results"></p>
+        </div>
+    </main>
+
+    <footer>
+        <a id="flink1" href="https://cdm-project.com/">Brought to you by the CDM-Project</a>
+        <a id="flink2" href="https://cdm-project.com/TPD94/CDRM-Project">View this sites source code</a>
+    </footer>
 </body>
+
 </html>
