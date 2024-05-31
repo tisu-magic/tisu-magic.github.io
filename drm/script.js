@@ -1,40 +1,27 @@
-function sendRequest() {
-    // Ambil nilai dari setiap input
-    var psshValue = document.getElementById("pssh").value;
-    var licenseUrlValue = document.getElementById("licenseUrl").value;
-    var proxyValue = document.getElementById("proxy").value;
-    var headersValue = document.getElementById("headers").value;
-    var jsonValue = document.getElementById("json").value;
-    var cookiesValue = document.getElementById("cookies").value;
-    var dataValue = document.getElementById("data").value;
+async function fetchData() {
+    const URL = document.getElementById('url').value;
+    const USER_AGENT = document.getElementById('user-agent').value;
 
-    // Buat objek data yang akan dikirimkan
-    var requestData = {
-        PSSH: psshValue,
-        "License URL": licenseUrlValue,
-        Headers: JSON.parse(headersValue),
-        JSON: JSON.parse(jsonValue),
-        Cookies: JSON.parse(cookiesValue),
-        Data: JSON.parse(dataValue),
-        Proxy: proxyValue
-    };
+    if (!URL || !USER_AGENT) {
+        alert('URL dan User-Agent harus diisi!');
+        return;
+    }
 
-    // Kirim permintaan POST menggunakan fetch API
-    fetch('https://cdrm-project.com/', {
-        method: 'POST',
-        body: JSON.stringify(requestData),
-        headers: {
-            'Content-Type': 'application/json'
+    document.getElementById('response-content').textContent = 'Memuat...';
+
+    try {
+        const response = await fetch(URL, {
+            method: 'GET',
+            headers: {
+                'User-Agent': USER_AGENT
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Tampilkan respons dari server
-        document.getElementById("response").innerHTML = JSON.stringify(data);
-    })
-    .catch(error => {
-        // Tangani kesalahan
-        console.error('Error:', error);
-        document.getElementById("response").innerHTML = "Error: " + error;
-    });
+        const data = await response.text();
+        document.getElementById('response-content').textContent = data;
+    } catch (error) {
+        document.getElementById('response-content').textContent = `Terjadi kesalahan: ${error.message}`;
+    }
 }
